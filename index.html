@@ -39,44 +39,31 @@
             left: 0;
             width: 100%;
             height: 100%;
-            box-shadow: inset 0 0 180px rgba(0, 0, 0, 0.75);
+            box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.7);
             pointer-events: none;
             z-index: 10;
         }
 
-        /* Main wrapper that tilts based on mouse position */
+        /* Main stage acts as the 3D surface containing the background image */
         .card-stage {
-            position: relative;
-            width: 100%;
-            height: 100%;
+            position: absolute;
+            /* Made slightly larger (110%) so edges never reveal black background when tilted */
+            width: 110vw;
+            height: 110vh;
             display: flex;
             justify-content: center;
             align-items: center;
             transform-style: preserve-3d;
             transition: transform 0.1s ease-out;
+
+            /* The image is now the background of the entire stage */
+            background-image: url('mainhero.jpg');
+            background-size: cover;
+            background-position: center 40%;
+            background-repeat: no-repeat;
         }
 
-        /* Fullscreen Image Container - slightly oversized (105%) to prevent any black edges during tilt */
-        .character-container {
-            position: absolute;
-            width: 105vw;
-            height: 105vh;
-            transform: translateZ(30px) scale(0.88); /* Zoomed out so she is fully framed in the middle */
-            transition: transform 0.1s ease-out;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .character-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 40%; /* Shifts focus slightly down so her head/face are well-centered */
-        }
-
-        /* Typography elements positioned around the center */
+        /* Typography elements positioned around the center with 3D depth */
         .nav-text {
             position: absolute;
             color: #ffffff;
@@ -96,7 +83,7 @@
         }
 
         .text-main {
-            left: 10vw;
+            left: 14vw;
             top: 48%;
             transform: translateY(-50%) translateZ(90px);
         }
@@ -116,7 +103,7 @@
         }
 
         .text-store {
-            right: 10vw;
+            right: 14vw;
             top: 48%;
             transform: translateY(-50%) translateZ(90px);
             text-align: right;
@@ -140,11 +127,6 @@
         @media (max-width: 900px) {
             .text-main { left: 6vw; top: 15%; }
             .text-store { right: 6vw; bottom: 10%; top: auto; text-align: left; }
-            .character-container {
-                width: 115vw;
-                height: 115vh;
-                transform: translateZ(30px) scale(0.8);
-            }
         }
     </style>
 </head>
@@ -160,11 +142,6 @@
                 <p>EVERYTHING</p>
             </div>
 
-            <!-- Fullscreen Character Background Element -->
-            <div class="character-container" id="character">
-                <img src="mainhero.jpg" alt="Character" class="character-img" id="charImg">
-            </div>
-
             <!-- Right Navigation / Title -->
             <div class="nav-text text-store" onclick="location.href='#store'">
                 <h1>STORE</h1>
@@ -174,9 +151,7 @@
     </div>
 
     <script>
-        const scene = document.getElementById('scene');
         const stage = document.getElementById('stage');
-        const character = document.getElementById('character');
 
         let mouseX = 0;
         let mouseY = 0;
@@ -195,8 +170,8 @@
             const tiltX = currentY * -8;
             const tiltY = currentX * 8;
 
+            // The entire scene/background tilts together as one solid canvas with zero gaps
             stage.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-            character.style.transform = `translateZ(30px) scale(0.88) translateX(${currentX * -10}px) translateY(${currentY * -10}px)`;
 
             requestAnimationFrame(animate);
         }
