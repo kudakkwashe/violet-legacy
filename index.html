@@ -44,7 +44,7 @@
             z-index: 10;
         }
 
-        /* Main stage holds the image, with a soft fade mask so edges melt into the black void */
+        /* Main stage scaled down to 75% so the whole picture fits, with a smooth edge fade */
         .card-stage {
             position: absolute;
             width: 100vw;
@@ -57,14 +57,13 @@
 
             background-color: #081a11;
             background-image: url('mainhero.JPG');
-            background-size: 92%;
+            background-size: 75%;
             background-position: center 42%;
             background-repeat: no-repeat;
 
-            /* This fades the outer edges of the image into transparent black, 
-               letting the solid #081a11 body/scene background create a seamless black bleed */
-            -webkit-mask-image: radial-gradient(circle at center, black 65%, transparent 100%);
-            mask-image: radial-gradient(circle at center, black 65%, transparent 100%);
+            /* Soft radial mask to fade the edges seamlessly into the black void */
+            -webkit-mask-image: radial-gradient(circle at center, black 50%, transparent 85%);
+            mask-image: radial-gradient(circle at center, black 50%, transparent 85%);
         }
 
         /* Typography elements positioned around the center with 3D depth */
