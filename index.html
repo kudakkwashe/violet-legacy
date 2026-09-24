@@ -19,7 +19,7 @@
             background-color: #081a11;
         }
 
-        /* Scene container */
+        /* Scene container with 3D perspective */
         .scene {
             position: relative;
             width: 100vw;
@@ -27,23 +27,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            perspective: 1200px;
             overflow: hidden;
             background: #081a11;
         }
 
-        /* Cinematic vignette for depth */
+        /* Vignette overlay for cinematic edges */
         .vignette {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.8);
+            box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.7);
             pointer-events: none;
             z-index: 10;
         }
 
-        /* Static card stage that holds the perfectly fitted background image */
+        /* Main stage scaled back to fit the viewport comfortably */
         .card-stage {
             position: absolute;
             width: 100vw;
@@ -51,16 +52,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
 
-            background-color: #081a11;
+            background-color: #112e1f;
             background-image: url('mainhero.JPG');
-            /* 'contain' ensures the entire image fits on screen without cutting off any faces or edges */
-            background-size: contain;
-            background-position: center;
+            /* Changed from cover to 95% so it's zoomed out slightly more */
+            background-size: 95%;
+            background-position: center 42%;
             background-repeat: no-repeat;
         }
 
-        /* Typography elements positioned around the center */
+        /* Typography elements positioned around the center with 3D depth */
         .nav-text {
             position: absolute;
             color: #ffffff;
@@ -70,6 +73,7 @@
             cursor: pointer;
             z-index: 5;
             user-select: none;
+            transform: translateZ(90px);
             transition: color 0.3s ease;
             text-shadow: 0 4px 20px rgba(0,0,0,0.6);
         }
@@ -79,13 +83,13 @@
         }
 
         .text-main {
-            left: 8vw;
+            left: 10vw;
             top: 48%;
-            transform: translateY(-50%);
+            transform: translateY(-50%) translateZ(90px);
         }
 
         .text-main h1 {
-            font-size: clamp(2rem, 4vw, 4rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             line-height: 1;
             margin-bottom: 8px;
             letter-spacing: 4px;
@@ -99,14 +103,14 @@
         }
 
         .text-store {
-            right: 8vw;
+            right: 10vw;
             top: 48%;
-            transform: translateY(-50%);
+            transform: translateY(-50%) translateZ(90px);
             text-align: right;
         }
 
         .text-store h1 {
-            font-size: clamp(2rem, 4vw, 4rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             line-height: 1;
             margin-bottom: 8px;
             letter-spacing: 4px;
@@ -119,10 +123,11 @@
             font-weight: 400;
         }
 
-        /* Responsive adjustments for smaller screens */
+        /* Responsive adjustments */
         @media (max-width: 900px) {
-            .text-main { left: 5vw; top: 12%; transform: none; }
-            .text-store { right: 5vw; bottom: 8%; top: auto; text-align: left; transform: none; }
+            .card-stage { background-size: cover; }
+            .text-main { left: 6vw; top: 15%; }
+            .text-store { right: 6vw; bottom: 10%; top: auto; text-align: left; }
         }
     </style>
 </head>
@@ -146,5 +151,32 @@
         </div>
     </div>
 
+    <script>
+        const stage = document.getElementById('stage');
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+
+        function animate() {
+            currentX += (mouseX - currentX) * 0.08;
+            currentY += (mouseY - currentY) * 0.08;
+
+            const tiltX = currentY * -6;
+            const tiltY = currentX * 6;
+
+            stage.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
 </html>
