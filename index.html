@@ -42,7 +42,22 @@
             pointer-events: none;
             z-index: 10;
         }
+        /* this is for the logo */
+        .logo-container {
+            position: absolute;
+            top: 5vh;
+            left: 50%;
+            transform: translateX(-50%) translateZ(90px);
+            z-index: 6;
+            pointer-events: auto;
+        }
 
+        .logo-container img {
+            height: 50px; /* Adjust this value to change your logo size */
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+        }
         /* Main stage */
         .card-stage {
             position: absolute;
@@ -164,7 +179,10 @@
         <div class="vignette"></div>
 
         <div class="card-stage" id="stage">
-
+            <!-- Logo Image -->
+            <div class="logo-container">
+                <img src="logoVL.png" alt="Vio Leg Logo">
+            </div>
             <!-- Background image -->
             <div class="background-image"></div>
 
