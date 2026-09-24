@@ -44,22 +44,22 @@
             z-index: 10;
         }
 
-        /* Main stage acts as the 3D surface containing the background image */
+        /* Main stage scaled back to fit the viewport comfortably */
         .card-stage {
             position: absolute;
-            width: 110vw;
-            height: 110vh;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             transform-style: preserve-3d;
             transition: transform 0.1s ease-out;
 
-            /* Fallback color added before the image URL */
             background-color: #112e1f;
             background-image: url('mainhero.JPG');
-            background-size: cover;
-            background-position: center 40%;
+            /* Changed from cover to 95% so it's zoomed out slightly more */
+            background-size: 95%;
+            background-position: center 42%;
             background-repeat: no-repeat;
         }
 
@@ -83,41 +83,41 @@
         }
 
         .text-main {
-            left: 14vw;
+            left: 10vw;
             top: 48%;
             transform: translateY(-50%) translateZ(90px);
         }
 
         .text-main h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             line-height: 1;
             margin-bottom: 8px;
             letter-spacing: 4px;
         }
 
         .text-main p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 3px;
             opacity: 0.9;
             font-weight: 400;
         }
 
         .text-store {
-            right: 14vw;
+            right: 10vw;
             top: 48%;
             transform: translateY(-50%) translateZ(90px);
             text-align: right;
         }
 
         .text-store h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             line-height: 1;
             margin-bottom: 8px;
             letter-spacing: 4px;
         }
 
         .text-store p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 3px;
             opacity: 0.9;
             font-weight: 400;
@@ -125,6 +125,7 @@
 
         /* Responsive adjustments */
         @media (max-width: 900px) {
+            .card-stage { background-size: cover; }
             .text-main { left: 6vw; top: 15%; }
             .text-store { right: 6vw; bottom: 10%; top: auto; text-align: left; }
         }
@@ -167,8 +168,8 @@
             currentX += (mouseX - currentX) * 0.08;
             currentY += (mouseY - currentY) * 0.08;
 
-            const tiltX = currentY * -8;
-            const tiltY = currentX * 8;
+            const tiltX = currentY * -6;
+            const tiltY = currentX * 6;
 
             stage.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 
