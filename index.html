@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vio leg</title>
+
     <style>
         * {
             box-sizing: border-box;
@@ -42,23 +43,40 @@
             z-index: 10;
         }
 
-        /* The whole stage now holds the background image, fits cover, and handles the 3D movement together */
+        /* Main stage */
         .card-stage {
             position: absolute;
             width: 100vw;
             height: 100vh;
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             transform-style: preserve-3d;
             transition: transform 0.1s ease-out;
 
-            background-color: #a97242;
+            z-index: 5;
+        }
+
+        /* Oversized background image */
+        .background-image {
+            position: absolute;
+
+            width: 110%;
+            height: 110%;
+
+            left: -5%;
+            top: -5%;
+
             background-image: url('mainhero.JPG');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            z-index: 5;
+
+            transform: translateZ(0);
+
+            z-index: -1;
         }
 
         .nav-text {
@@ -70,8 +88,11 @@
             cursor: pointer;
             z-index: 5;
             user-select: none;
+
             transform: translateZ(90px);
+
             transition: color 0.3s ease;
+
             text-shadow: 0 4px 20px rgba(0,0,0,0.6);
         }
 
@@ -121,17 +142,33 @@
         }
 
         @media (max-width: 900px) {
-            .text-main { left: 6vw; top: 15%; }
-            .text-store { right: 6vw; bottom: 10%; top: auto; text-align: left; }
+            .text-main {
+                left: 6vw;
+                top: 15%;
+            }
+
+            .text-store {
+                right: 6vw;
+                bottom: 10%;
+                top: auto;
+                text-align: left;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="scene" id="scene">
+
         <div class="vignette"></div>
 
         <div class="card-stage" id="stage">
+
+            <!-- Background image -->
+            <div class="background-image"></div>
+
+            <!-- Navigation -->
             <div class="nav-text text-main" onclick="location.href='#main'">
                 <h1>ABOUT</h1>
                 <p>VIOLET LEGACY</p>
@@ -141,7 +178,9 @@
                 <h1>SHOP</h1>
                 <p>ALL COLLECTION</p>
             </div>
+
         </div>
+
     </div>
 
     <script>
@@ -149,27 +188,33 @@
 
         let mouseX = 0;
         let mouseY = 0;
+
         let currentX = 0;
         let currentY = 0;
 
         window.addEventListener('mousemove', (e) => {
+
             mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
             mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+
         });
 
         function animate() {
+
             currentX += (mouseX - currentX) * 0.08;
             currentY += (mouseY - currentY) * 0.08;
 
             const tiltX = currentY * -6;
             const tiltY = currentX * 6;
 
-            stage.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            stage.style.transform =
+                `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 
             requestAnimationFrame(animate);
         }
 
         animate();
     </script>
+
 </body>
 </html>
