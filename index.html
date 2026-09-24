@@ -32,33 +32,33 @@
             background: #081a11;
         }
 
-        /* Vignette overlay for cinematic edges */
+        /* Deep vignette overlay to melt the edges into an infinite void */
         .vignette {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.7);
+            background: radial-gradient(circle at center, transparent 40%, rgba(8, 26, 17, 0.8) 75%, #081a11 100%);
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9);
             pointer-events: none;
             z-index: 10;
         }
 
-        /* Main stage scaled back to fit the viewport comfortably */
+        /* Main stage is made oversized (130vw/130vh) so tilted edges never expose gaps */
         .card-stage {
             position: absolute;
-            width: 100vw;
-            height: 100vh;
+            width: 130vw;
+            height: 130vh;
             display: flex;
             justify-content: center;
             align-items: center;
             transform-style: preserve-3d;
             transition: transform 0.1s ease-out;
 
-            background-color: #112e1f;
+            background-color: #081a11;
             background-image: url('mainhero.JPG');
-            /* Changed from cover to 95% so it's zoomed out slightly more */
-            background-size: 95%;
+            background-size: cover;
             background-position: center 42%;
             background-repeat: no-repeat;
         }
@@ -83,7 +83,7 @@
         }
 
         .text-main {
-            left: 10vw;
+            left: 18vw;
             top: 48%;
             transform: translateY(-50%) translateZ(90px);
         }
@@ -103,7 +103,7 @@
         }
 
         .text-store {
-            right: 10vw;
+            right: 18vw;
             top: 48%;
             transform: translateY(-50%) translateZ(90px);
             text-align: right;
@@ -125,9 +125,8 @@
 
         /* Responsive adjustments */
         @media (max-width: 900px) {
-            .card-stage { background-size: cover; }
-            .text-main { left: 6vw; top: 15%; }
-            .text-store { right: 6vw; bottom: 10%; top: auto; text-align: left; }
+            .text-main { left: 8vw; top: 15%; }
+            .text-store { right: 8vw; bottom: 10%; top: auto; text-align: left; }
         }
     </style>
 </head>
