@@ -3,236 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vio leg</title>
-
+    <title>Violet Legacy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
+        :root {
+            --bg-color: #0c0c0e;
+            --text-primary: #f4f4f6;
+            --text-muted: #94949b;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         body, html {
             width: 100%;
             height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #a97242;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .scene {
+        .landing-container {
             position: relative;
             width: 100vw;
             height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1200px;
-            overflow: hidden;
-            background: #a97242;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2.5rem 3rem;
+            background-image: url('mainhero.jpg');
+            background-size: cover;
+            background-position: center;
         }
 
-        .vignette {
+        /* Subtle dark gradient overlay to ensure UI elements pop while keeping the photo clean */
+        .landing-container::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.7);
+            background: linear-gradient(135deg, rgba(12, 12, 14, 0.75) 0%, rgba(12, 12, 14, 0.4) 50%, rgba(12, 12, 14, 0.75) 100%);
+            z-index: 1;
             pointer-events: none;
-            z-index: 10;
         }
-        /* this is for the logo */
-        .logo-container {
-            position: absolute;
-            top: 5vh;
-            left: 50%;
-            transform: translateX(-50%) translateZ(90px);
-            z-index: 6;
-            pointer-events: auto;
+
+        header, nav, .bottom-left-nav, .top-right-nav, .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
         }
 
         .logo-container img {
-            height: 80px; /* Adjust this value to change your logo size */
+            height: 38px;
             width: auto;
-            display: block;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
         }
-        /* Main stage */
-        .card-stage {
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
 
+        .top-right-nav {
             display: flex;
-            justify-content: center;
             align-items: center;
-
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out;
-
-            z-index: 5;
+            gap: 1.5rem;
         }
 
-        /* Oversized background image */
-        .background-image {
-            position: absolute;
-
-            width: 110%;
-            height: 110%;
-
-            left: -5%;
-            top: -5%;
-
-            background-image: url('mainhero.JPG');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-
-            transform: translateZ(0);
-
-            z-index: -1;
-        }
-
-        .nav-text {
-            position: absolute;
-            color: #ffffff;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .bag-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            border-radius: 4px;
             cursor: pointer;
-            z-index: 5;
-            user-select: none;
-
-            transform: translateZ(90px);
-
-            transition: color 0.3s ease;
-
-            text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .nav-text:hover {
-            color: #a8ffcc;
+        .bag-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
 
-        .text-main {
-            left: 15vw;
-            top: 26%;
-            transform: translateY(-50%) translateZ(90px);
+        .menu-toggle {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
         }
 
-        .text-main h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 1;
-            margin-bottom: 8px;
-            letter-spacing: 4px;
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: var(--transition-smooth);
         }
 
-        .text-main p {
+        .menu-toggle:hover span {
+            background-color: var(--text-muted);
+        }
+
+        /* Middle Area / Hero Content */
+        .hero-middle {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        /* Left side navigation links */
+        .side-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .side-nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            transition: var(--transition-smooth);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+            width: fit-content;
+        }
+
+        .side-nav a:hover {
+            color: var(--text-muted);
+            transform: translateX(4px);
+        }
+
+        /* Center Action */
+        .center-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.25rem;
+            position: absolute;
+            left: 50%;
+            bottom: 3.5rem;
+            transform: translateX(-50%);
+        }
+
+        .shop-btn {
+            background: rgba(255, 255, 255, 0.95);
+            color: #0c0c0e;
+            border: none;
+            padding: 0.9rem 2.4rem;
+            font-family: inherit;
             font-size: 0.85rem;
-            letter-spacing: 3px;
-            opacity: 0.9;
-            font-weight: 400;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
-        .text-store {
-            right: 22.5vw;
-            top: 26%;
-            transform: translateY(-50%) translateZ(90px);
-            text-align: right;
+        .shop-btn:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
         }
 
-        .text-store h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 1;
-            margin-bottom: 8px;
-            letter-spacing: 4px;
-        }
-
-        .text-store p {
-            font-size: 0.85rem;
-            letter-spacing: 3px;
-            opacity: 0.9;
-            font-weight: 400;
-        }
-
-        @media (max-width: 900px) {
-            .text-main {
-                left: 6vw;
-                top: 15%;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .landing-container {
+                padding: 1.5rem;
             }
-
-            .text-store {
-                right: 6vw;
-                bottom: 10%;
-                top: auto;
-                text-align: left;
+            .hero-middle {
+                align-items: center;
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .side-nav {
+                align-items: center;
+            }
+            .center-action {
+                position: relative;
+                left: unset;
+                bottom: unset;
+                transform: none;
+                margin-top: 1rem;
             }
         }
     </style>
 </head>
-
 <body>
 
-    <div class="scene" id="scene">
-
-        <div class="vignette"></div>
-
-        <div class="card-stage" id="stage">
-            <!-- Logo Image -->
+    <div class="landing-container">
+        <!-- Top Bar -->
+        <header class="top-bar">
             <div class="logo-container">
-                <img src="logoVL.png" alt="Vio Leg Logo">
+                <img src="Screenshot 2026-09-25 at 15.33.30.png" alt="Violet Legacy Logo">
             </div>
-            <!-- Background image -->
-            <div class="background-image"></div>
-
-            <!-- Navigation -->
-            <div class="nav-text text-main" onclick="location.href='#main'">
-                <h1>ABOUT</h1>
-                <p>VIOLET LEGACY</p>
+            <div class="top-right-nav">
+                <button class="bag-btn" onclick="alert('Bag is empty')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    BAG (0)
+                </button>
+                <button class="menu-toggle" aria-label="Open navigation menu" onclick="alert('Menu opened')">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
+        </header>
 
-            <div class="nav-text text-store" onclick="location.href='#store'">
-                <h1>SHOP</h1>
-                <p>ALL COLLECTION</p>
+        <!-- Main Body / Hero Section -->
+        <div class="hero-middle">
+            <!-- Left Navigation Menu -->
+            <nav class="side-nav">
+                <a href="#new-drop">NEW DROP</a>
+                <a href="#collections">COLLECTIONS</a>
+                <a href="#size-guide">SIZE GUIDE</a>
+                <a href="#sustainability">SUSTAINABILITY</a>
+                <a href="#about">ABOUT</a>
+            </nav>
+
+            <!-- Bottom Center Action Button -->
+            <div class="center-action">
+                <button class="shop-btn" onclick="alert('Redirecting to shop...')">SHOP NOW</button>
             </div>
-
         </div>
-
     </div>
-
-    <script>
-        const stage = document.getElementById('stage');
-
-        let mouseX = 0;
-        let mouseY = 0;
-
-        let currentX = 0;
-        let currentY = 0;
-
-        window.addEventListener('mousemove', (e) => {
-
-            mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-            mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-
-        });
-
-        function animate() {
-
-            currentX += (mouseX - currentX) * 0.08;
-            currentY += (mouseY - currentY) * 0.08;
-
-            const tiltX = currentY * -6;
-            const tiltY = currentX * 6;
-
-            stage.style.transform =
-                `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-    </script>
 
 </body>
 </html>
