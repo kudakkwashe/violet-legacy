@@ -4,13 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>PALACE</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
+
+        /* =========================
+           GLOBAL SETTINGS
+        ========================= */
+
         * {
             margin: 0;
             padding: 0;
@@ -19,7 +26,7 @@
 
         html, body {
             width: 100%;
-            min-height: 100%;
+            height: 100%;
         }
 
         body {
@@ -29,7 +36,9 @@
             overflow-x: hidden;
         }
 
-        /* FULL SCREEN HERO */
+        /* =========================
+           FULL SCREEN PAGE
+        ========================= */
 
         .page-container {
             position: relative;
@@ -40,6 +49,10 @@
             background: #d1d5db;
         }
 
+        /* =========================
+           BACKGROUND IMAGE
+        ========================= */
+
         .hero-bg {
             position: absolute;
             inset: 0;
@@ -48,9 +61,8 @@
 
             background-image:
                 linear-gradient(
-                    to bottom,
-                    rgba(0,0,0,0.08),
-                    rgba(0,0,0,0.08)
+                    rgba(0,0,0,0.04),
+                    rgba(0,0,0,0.04)
                 ),
                 url("./background.jpg");
 
@@ -59,11 +71,13 @@
             background-repeat: no-repeat;
         }
 
-        /* NAVIGATION */
+        /* =========================
+           TOP NAVIGATION BAR
+        ========================= */
 
         .nav-container {
             position: absolute;
-            top: 25px;
+            top: 38px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -72,110 +86,147 @@
         }
 
         .nav-pill {
-            background: #000;
-            border-radius: 50px;
-            padding: 9px 18px;
+            background: #000000;
+            border-radius: 70px;
+
+            padding: 21px 38px;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 18px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+            gap: 32px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
             white-space: nowrap;
         }
 
         .nav-logo {
+            font-size: 31px;
             font-weight: 900;
             font-style: italic;
-            font-size: 15px;
-            letter-spacing: -0.5px;
-            color: white;
+            letter-spacing: -1.5px;
+            color: #ffffff;
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
             align-items: center;
-            gap: 16px;
-            font-size: 10px;
-            font-weight: 700;
+            list-style: none;
+
+            gap: 30px;
+
+            font-size: 17px;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .nav-links a,
-        .nav-cart {
+        .nav-links a {
             color: #b3b3b3;
             text-decoration: none;
             transition: color 0.2s ease;
         }
 
         .nav-links a:hover,
-        .nav-links a.active,
-        .nav-cart:hover {
-            color: white;
+        .nav-links a.active {
+            color: #ffffff;
         }
 
         .nav-cart {
-            color: white;
-            font-size: 10px;
-            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+
+            font-size: 17px;
+            font-weight: 800;
             text-transform: uppercase;
-            white-space: nowrap;
+            letter-spacing: 0.5px;
         }
 
-        /* BOTTOM LEFT LINKS */
+        /* =========================
+           LEFT SIDE MENU
+        ========================= */
 
         .left-menu {
             position: absolute;
-            bottom: 35px;
-            left: 35px;
+
+            top: 50%;
+            left: 40px;
+
+            bottom: auto;
+
+            transform: translateY(-50%);
+
             z-index: 5;
 
             display: flex;
             flex-direction: column;
-            gap: 4px;
+
+            gap: 9px;
         }
 
         .left-menu a {
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 25px;
+            font-weight: 900;
+
             text-decoration: none;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+
+            letter-spacing: 0.2px;
+
             color: #9ca3af;
-            line-height: 1.4;
+
+            line-height: 1.35;
+
             transition: color 0.2s ease;
         }
 
         .left-menu a:hover {
-            color: white;
+            color: #ffffff;
         }
 
         .left-menu a.highlight {
             color: #5575ff;
         }
 
-        /* VIEW NOW BUTTON */
+        /* =========================
+           RIGHT SIDE VIEW BUTTON
+        ========================= */
 
         .view-now-container {
             position: absolute;
-            bottom: 35px;
-            right: 35px;
+
+            top: 50%;
+            right: 40px;
+
+            bottom: auto;
+
+            transform: translateY(-50%);
+
             z-index: 5;
         }
 
         .view-btn {
             display: inline-block;
+
             background: #4361ee;
-            color: white;
-            font-size: 10px;
-            font-weight: 800;
+            color: #ffffff;
+
+            font-size: 19px;
+            font-weight: 900;
+
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 9px 15px;
+
+            padding: 21px 32px;
+
             border-radius: 3px;
+
             text-decoration: none;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+
             transition: background 0.2s ease;
         }
 
@@ -183,21 +234,66 @@
             background: #314ecc;
         }
 
-        /* MOBILE RESPONSIVENESS */
+        /* =========================
+           TABLET RESPONSIVENESS
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .nav-pill {
+                padding: 15px 22px;
+                gap: 18px;
+            }
+
+            .nav-logo {
+                font-size: 23px;
+            }
+
+            .nav-links {
+                font-size: 12px;
+                gap: 17px;
+            }
+
+            .nav-cart {
+                font-size: 12px;
+            }
+
+            .left-menu {
+                left: 25px;
+            }
+
+            .left-menu a {
+                font-size: 19px;
+            }
+
+            .view-now-container {
+                right: 25px;
+            }
+
+            .view-btn {
+                font-size: 14px;
+                padding: 15px 21px;
+            }
+        }
+
+        /* =========================
+           MOBILE RESPONSIVENESS
+        ========================= */
 
         @media (max-width: 600px) {
 
             .nav-container {
-                top: 15px;
+                top: 18px;
+                max-width: calc(100% - 16px);
             }
 
             .nav-pill {
+                padding: 11px 13px;
                 gap: 10px;
-                padding: 9px 12px;
             }
 
             .nav-logo {
-                font-size: 12px;
+                font-size: 14px;
             }
 
             .nav-links {
@@ -210,139 +306,29 @@
             }
 
             .left-menu {
-                bottom: 20px;
-                left: 18px;
+                left: 15px;
+                top: 50%;
+                bottom: auto;
                 gap: 5px;
             }
 
             .left-menu a {
-                font-size: 9px;
+                font-size: 11px;
+                line-height: 1.4;
             }
 
             .view-now-container {
-                bottom: 20px;
-                right: 18px;
+                right: 15px;
+                top: 50%;
+                bottom: auto;
             }
 
             .view-btn {
                 font-size: 9px;
-                padding: 8px 11px;
+                padding: 9px 12px;
             }
         }
 
-/* =================================
-   PALACE - LARGER DESKTOP LAYOUT
-================================= */
-
-/* NAVIGATION PILL */
-
-.nav-container {
-    top: 35px;
-}
-
-.nav-pill {
-    padding: 13px 24px;
-    gap: 24px;
-}
-
-.nav-logo {
-    font-size: 21px;
-    letter-spacing: -1px;
-}
-
-.nav-links {
-    gap: 22px;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-}
-
-.nav-cart {
-    font-size: 13px;
-}
-
-/* LEFT MENU - VERTICAL CENTRE */
-
-.left-menu {
-    top: 50%;
-    bottom: auto;
-    left: 28px;
-    transform: translateY(-50%);
-    gap: 5px;
-}
-
-.left-menu a {
-    font-size: 17px;
-    line-height: 1.35;
-    letter-spacing: 0.3px;
-    font-weight: 800;
-}
-
-.left-menu a.highlight {
-    color: #5575ff;
-}
-
-/* RIGHT SIDE BUTTON - VERTICAL CENTRE */
-
-.view-now-container {
-    top: 50%;
-    bottom: auto;
-    right: 30px;
-    transform: translateY(-50%);
-}
-
-.view-btn {
-    font-size: 13px;
-    padding: 13px 19px;
-    letter-spacing: 0.7px;
-}
-
-/* MOBILE ADJUSTMENTS */
-
-@media (max-width: 600px) {
-
-    .nav-container {
-        top: 18px;
-    }
-
-    .nav-pill {
-        padding: 10px 13px;
-        gap: 10px;
-    }
-
-    .nav-logo {
-        font-size: 13px;
-    }
-
-    .nav-links {
-        gap: 9px;
-        font-size: 8px;
-    }
-
-    .nav-cart {
-        font-size: 8px;
-    }
-
-    .left-menu {
-        left: 15px;
-        top: 50%;
-        bottom: auto;
-    }
-
-    .left-menu a {
-        font-size: 11px;
-    }
-
-    .view-now-container {
-        right: 15px;
-        top: 50%;
-        bottom: auto;
-    }
-
-    .view-btn {
-        font-size: 9px;
-        padding: 9px 11px;
-    }
-}
     </style>
 </head>
 
@@ -350,10 +336,13 @@
 
     <main class="page-container">
 
-        <!-- BACKGROUND -->
+        <!-- BACKGROUND IMAGE -->
+
         <div class="hero-bg"></div>
 
-        <!-- NAVIGATION -->
+
+        <!-- TOP NAVIGATION -->
+
         <nav class="nav-container">
 
             <div class="nav-pill">
@@ -361,18 +350,32 @@
                 <span class="nav-logo">PALACE</span>
 
                 <ul class="nav-links">
-                    <li><a href="#" class="active">WEB SHOP</a></li>
-                    <li><a href="#">STORES</a></li>
-                    <li><a href="#">ADVICE</a></li>
+
+                    <li>
+                        <a href="#" class="active">WEB SHOP</a>
+                    </li>
+
+                    <li>
+                        <a href="#">STORES</a>
+                    </li>
+
+                    <li>
+                        <a href="#">ADVICE</a>
+                    </li>
+
                 </ul>
 
-                <a href="#" class="nav-cart">CART 1</a>
+                <a href="#" class="nav-cart">
+                    CART 1
+                </a>
 
             </div>
 
         </nav>
 
-        <!-- BOTTOM LEFT MENU -->
+
+        <!-- LEFT SIDE COLLECTION MENU -->
+
         <div class="left-menu">
 
             <a href="#">MANOR PLACE</a>
@@ -389,11 +392,15 @@
                 AUTUMN 2026 LOOKBOOK
             </a>
 
-            <a href="#">PALACE JAMSIL</a>
+            <a href="#">
+                PALACE JAMSIL
+            </a>
 
         </div>
 
-        <!-- VIEW NOW -->
+
+        <!-- RIGHT SIDE BUTTON -->
+
         <div class="view-now-container">
 
             <a href="#" class="view-btn">
