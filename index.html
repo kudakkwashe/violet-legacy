@@ -19,6 +19,12 @@
             --text-primary: #f4f4f6;
             --text-muted: #94949b;
             --border-color: rgba(255, 255, 255, 0.08);
+            
+            /* New Color Palette */
+            --sapphire-blue: #0f52ba;
+            --ocean-blue: #0077be;
+            --neon-jade: #00ffbc;
+            
             --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -40,7 +46,7 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 2.5rem 3rem;
-            background-image: url('mainhero.jpeg');
+            background-image: url('mainhero.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -53,7 +59,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(12, 12, 14, 0.75) 0%, rgba(12, 12, 14, 0.4) 50%, rgba(12, 12, 14, 0.75) 100%);
+            background: linear-gradient(135deg, rgba(12, 12, 14, 0.8) 0%, rgba(12, 12, 14, 0.45) 50%, rgba(12, 12, 14, 0.8) 100%);
             z-index: 1;
             pointer-events: none;
         }
@@ -85,8 +91,8 @@
         }
 
         .bag-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--border-color);
+            background: rgba(15, 82, 186, 0.2); /* Sapphire blue tint */
+            border: 1px solid rgba(0, 119, 190, 0.3);
             color: var(--text-primary);
             padding: 0.5rem 1rem;
             font-family: inherit;
@@ -102,8 +108,13 @@
             gap: 0.5rem;
         }
 
+        .bag-btn svg {
+            stroke: var(--neon-jade); /* Neon Jade accent for the bag icon */
+        }
+
         .bag-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(15, 82, 186, 0.4);
+            border-color: var(--ocean-blue);
         }
 
         .menu-toggle {
@@ -125,7 +136,7 @@
         }
 
         .menu-toggle:hover span {
-            background-color: var(--text-muted);
+            background-color: var(--neon-jade); /* Highlights menu toggle on hover */
         }
 
         /* Middle Area / Hero Content */
@@ -156,7 +167,7 @@
         }
 
         .side-nav a:hover {
-            color: var(--text-muted);
+            color: var(--neon-jade); /* Neon Jade hover effect for navigation */
             transform: translateX(4px);
         }
 
@@ -173,9 +184,9 @@
         }
 
         .shop-btn {
-            background: rgba(255, 255, 255, 0.95);
-            color: #0c0c0e;
-            border: none;
+            background: var(--ocean-blue); /* Ocean Blue primary button */
+            color: #ffffff;
+            border: 1px solid rgba(0, 255, 188, 0.3);
             padding: 0.9rem 2.4rem;
             font-family: inherit;
             font-size: 0.85rem;
@@ -185,13 +196,15 @@
             border-radius: 4px;
             cursor: pointer;
             transition: var(--transition-smooth);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 119, 190, 0.4);
         }
 
         .shop-btn:hover {
-            background: #ffffff;
+            background: var(--sapphire-blue);
+            border-color: var(--neon-jade);
+            color: var(--neon-jade); /* Accent text on hover */
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 6px 25px rgba(0, 255, 188, 0.25);
         }
 
         /* Responsive Design */
@@ -223,7 +236,7 @@
         <!-- Top Bar -->
         <header class="top-bar">
             <div class="logo-container">
-                <img src="Screenshot 2026-09-25 at 15.33.30.png" alt="Violet Legacy Logo">
+                <img src="mainhero.jpg" alt="Violet Legacy Logo">
             </div>
             <div class="top-right-nav">
                 <button class="bag-btn" onclick="alert('Bag is empty')">
