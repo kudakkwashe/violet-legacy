@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PALACE</title>
-    <!-- Importing Futura / Bold Sans-serif styling matching Palace's signature aesthetic -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -17,7 +16,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #d1d5db; /* Neutral outer light gray frame matching the image mockup */
+            background-color: #d1d5db;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -26,7 +25,6 @@
             padding: 20px;
         }
 
-        /* Outer frame container */
         .page-container {
             width: 100%;
             max-width: 1100px;
@@ -94,15 +92,19 @@
             letter-spacing: 0.5px;
         }
 
-        /* Hero Image Container / Background */
+        /* Hero Image Container */
         .hero-bg {
             width: 100%;
             height: 720px;
-            background-image: url('background.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
             position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         /* Left Hand Side Menu Links */
@@ -122,7 +124,7 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: #9ca3af; /* Muted gray for inactive links */
+            color: #9ca3af;
             transition: color 0.2s ease;
             line-height: 1.4;
         }
@@ -131,7 +133,6 @@
             color: #ffffff;
         }
 
-        /* Active highlight color matching Palace blue tint in image */
         .left-menu a.highlight {
             color: #5575ff; 
         }
@@ -145,7 +146,7 @@
         }
 
         .view-btn {
-            background-color: #4361ee; /* Exact Palace blue badge color */
+            background-color: #4361ee;
             color: #ffffff;
             font-size: 10px;
             font-weight: 800;
@@ -162,7 +163,6 @@
             background-color: #314ecc;
         }
 
-        /* Responsive layout adaptation */
         @media (max-width: 768px) {
             .hero-bg {
                 height: 500px;
@@ -205,8 +205,11 @@
             </div>
         </nav>
 
-        <!-- Hero Section with background set to background.jpg -->
+        <!-- Hero Section with Image Tag -->
         <div class="hero-bg">
+            <!-- Background Image -->
+            <img src="background.jpg" alt="Hero Background">
+
             <!-- Left Side Navigation Links -->
             <div class="left-menu">
                 <a href="#">MANOR PLACE</a>
