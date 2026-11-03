@@ -3,276 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Violet Legacy</title>
+    <title>PALACE</title>
+    <!-- Importing Futura / Bold Sans-serif styling matching Palace's signature aesthetic -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        :root {
-            --bg-color: #0c0c0e;
-            --text-primary: #f4f4f6;
-            --text-muted: #94949b;
-            --border-color: rgba(255, 255, 255, 0.08);
-            
-            /* Color Palette */
-            --sapphire-blue: #0f52ba;
-            --ocean-blue: #0077be;
-            --neon-jade: #00ffbc;
-            
-            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        body, html {
-            width: 100%;
-            height: 100vh;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Basic HTML Background Image Wrapper */
-        .bg-image-wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .bg-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-        .landing-container {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 2.5rem 3rem;
-            z-index: 2;
-        }
-
-        header, nav, .top-right-nav, .hero-middle {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Top Bar */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .logo-container img {
-            height: 38px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
-        }
-
-        .top-right-nav {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .bag-btn {
-            background: rgba(15, 82, 186, 0.2);
-            border: 1px solid rgba(0, 119, 190, 0.3);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            font-family: inherit;
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            border-radius: 4px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: var(--transition-smooth);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .bag-btn svg {
-            stroke: var(--neon-jade);
-        }
-
-        .bag-btn:hover {
-            background: rgba(15, 82, 186, 0.4);
-            border-color: var(--ocean-blue);
-        }
-
-        .menu-toggle {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            padding: 4px;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background-color: var(--text-primary);
-            transition: var(--transition-smooth);
-        }
-
-        .menu-toggle:hover span {
-            background-color: var(--neon-jade);
-        }
-
-        /* Middle Area / Hero Content */
-        .hero-middle {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-
-        /* Left side navigation links */
-        .side-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .side-nav a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            transition: var(--transition-smooth);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-            width: fit-content;
-        }
-
-        .side-nav a:hover {
-            color: var(--neon-jade);
-            transform: translateX(4px);
-        }
-
-        /* Center Action */
-        .center-action {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.25rem;
-            position: absolute;
-            left: 50%;
-            bottom: 3.5rem;
-            transform: translateX(-50%);
-        }
-
-        .shop-btn {
-            background: var(--ocean-blue);
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #d1d5db; /* Neutral outer light gray frame matching the image mockup */
             color: #ffffff;
-            border: 1px solid rgba(0, 255, 188, 0.3);
-            padding: 0.9rem 2.4rem;
-            font-family: inherit;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Outer frame container */
+        .page-container {
+            width: 100%;
+            max-width: 1100px;
+            background-color: #e5e7eb;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Floating Pill Navigation Bar */
+        .nav-container {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .nav-pill {
+            background-color: #000000;
+            border-radius: 50px;
+            padding: 8px 18px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-logo {
+            font-weight: 900;
+            font-style: italic;
+            font-size: 15px;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            background: #000;
+            padding: 2px 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 16px;
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            box-shadow: 0 4px 20px rgba(0, 119, 190, 0.4);
+            letter-spacing: 0.5px;
         }
 
-        .shop-btn:hover {
-            background: var(--sapphire-blue);
-            border-color: var(--neon-jade);
-            color: var(--neon-jade);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0, 255, 188, 0.25);
+        .nav-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: color 0.2s ease;
         }
 
-        /* Responsive Design */
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ffffff;
+        }
+
+        .nav-cart {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero Image Container / Background */
+        .hero-bg {
+            width: 100%;
+            height: 720px;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        /* Left Hand Side Menu Links */
+        .left-menu {
+            position: absolute;
+            bottom: 40px;
+            left: 36px;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .left-menu a {
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #9ca3af; /* Muted gray for inactive links */
+            transition: color 0.2s ease;
+            line-height: 1.4;
+        }
+
+        .left-menu a:hover {
+            color: #ffffff;
+        }
+
+        /* Active highlight color matching Palace blue tint in image */
+        .left-menu a.highlight {
+            color: #5575ff; 
+        }
+
+        /* Right Hand Side 'VIEW NOW' Button */
+        .view-now-container {
+            position: absolute;
+            bottom: 40px;
+            right: 36px;
+            z-index: 5;
+        }
+
+        .view-btn {
+            background-color: #4361ee; /* Exact Palace blue badge color */
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 14px;
+            border-radius: 3px;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.2s ease;
+        }
+
+        .view-btn:hover {
+            background-color: #314ecc;
+        }
+
+        /* Responsive layout adaptation */
         @media (max-width: 768px) {
-            .landing-container {
-                padding: 1.5rem;
+            .hero-bg {
+                height: 500px;
             }
-            .hero-middle {
-                align-items: center;
-                flex-direction: column;
-                gap: 2rem;
+            .nav-pill {
+                padding: 6px 12px;
+                gap: 10px;
             }
-            .side-nav {
-                align-items: center;
+            .nav-links {
+                gap: 10px;
+                font-size: 9px;
             }
-            .center-action {
-                position: relative;
-                left: unset;
-                bottom: unset;
-                transform: none;
-                margin-top: 1rem;
+            .left-menu {
+                bottom: 20px;
+                left: 20px;
+            }
+            .left-menu a {
+                font-size: 10px;
+            }
+            .view-now-container {
+                bottom: 20px;
+                right: 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Standard HTML Background Image & Overlay -->
-    <div class="bg-image-wrapper">
-        <img src = "background.jpg" alt="Violet Legacy Hero Background">
-    </div>
-    <div class="bg-overlay"></div>
-
-    <div class="landing-container">
-        <!-- Top Bar -->
-        <header class="top-bar">
-            <div class="logo-container">
-                <img src="logoVL.png" alt="Violet Legacy Logo">
+    <div class="page-container">
+        <!-- Floating Pill Navigation Bar -->
+        <nav class="nav-container">
+            <div class="nav-pill">
+                <span class="nav-logo">PALACE</span>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">WEB SHOP</a></li>
+                    <li><a href="#">STORES</a></li>
+                    <li><a href="#">ADVICE</a></li>
+                </ul>
+                <a href="#" class="nav-cart">CART 1</a>
             </div>
-            <div class="top-right-nav">
-                <button class="bag-btn" onclick="alert('Bag is empty')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                    BAG
-                </button>
-                <button class="menu-toggle" aria-label="Open navigation menu" onclick="alert('Menu opened')">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+        </nav>
+
+        <!-- Hero Section with background set to background.jpg -->
+        <div class="hero-bg">
+            <!-- Left Side Navigation Links -->
+            <div class="left-menu">
+                <a href="#">MANOR PLACE</a>
+                <a href="#" class="highlight">PALACE NIKE ENGLAND</a>
+                <a href="#" class="highlight">AUTUMN 2026 RANGE</a>
+                <a href="#">AUTUMN 2026 LOOKBOOK</a>
+                <a href="#">PALACE JAMSIL</a>
             </div>
-        </header>
 
-        <!-- Main Body / Hero Section -->
-        <div class="hero-middle">
-            <!-- Left Navigation Menu -->
-            <nav class="side-nav">
-                <a href="#new-drop">NEW DROP</a>
-                <a href="#collections">COLLECTIONS</a>
-                <a href="#size-guide">SIZE GUIDE</a>
-                <a href="#sustainability">SUSTAINABILITY</a>
-                <a href="#about">ABOUT</a>
-            </nav>
-
-            <!-- Bottom Center Action Button -->
-            <div class="center-action">
-                <button class="shop-btn" onclick="alert('Redirecting to shop...')">SHOP NOW</button>
+            <!-- Right Side View Now Button -->
+            <div class="view-now-container">
+                <a href="#" class="view-btn">VIEW NOW</a>
             </div>
         </div>
     </div>
