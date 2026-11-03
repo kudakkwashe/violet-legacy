@@ -20,7 +20,7 @@
             --text-muted: #94949b;
             --border-color: rgba(255, 255, 255, 0.08);
             
-            /* New Color Palette */
+            /* Color Palette */
             --sapphire-blue: #0f52ba;
             --ocean-blue: #0077be;
             --neon-jade: #00ffbc;
@@ -38,22 +38,26 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .landing-container {
-            position: relative;
+        /* Basic HTML Background Image Wrapper */
+        .bg-image-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 2.5rem 3rem;
-            background-image: url('mainhero.jpeg');
-            background-size: cover;
-            background-position: center;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        /* Subtle dark gradient overlay to ensure UI elements pop while keeping the photo clean */
-        .landing-container::before {
-            content: '';
+        .bg-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Dark Gradient Overlay */
+        .bg-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -64,7 +68,18 @@
             pointer-events: none;
         }
 
-        header, nav, .bottom-left-nav, .top-right-nav, .hero-content {
+        .landing-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2.5rem 3rem;
+            z-index: 2;
+        }
+
+        header, nav, .top-right-nav, .hero-middle {
             position: relative;
             z-index: 2;
         }
@@ -91,7 +106,7 @@
         }
 
         .bag-btn {
-            background: rgba(15, 82, 186, 0.2); /* Sapphire blue tint */
+            background: rgba(15, 82, 186, 0.2);
             border: 1px solid rgba(0, 119, 190, 0.3);
             color: var(--text-primary);
             padding: 0.5rem 1rem;
@@ -109,7 +124,7 @@
         }
 
         .bag-btn svg {
-            stroke: var(--neon-jade); /* Neon Jade accent for the bag icon */
+            stroke: var(--neon-jade);
         }
 
         .bag-btn:hover {
@@ -136,7 +151,7 @@
         }
 
         .menu-toggle:hover span {
-            background-color: var(--neon-jade); /* Highlights menu toggle on hover */
+            background-color: var(--neon-jade);
         }
 
         /* Middle Area / Hero Content */
@@ -167,7 +182,7 @@
         }
 
         .side-nav a:hover {
-            color: var(--neon-jade); /* Neon Jade hover effect for navigation */
+            color: var(--neon-jade);
             transform: translateX(4px);
         }
 
@@ -184,7 +199,7 @@
         }
 
         .shop-btn {
-            background: var(--ocean-blue); /* Ocean Blue primary button */
+            background: var(--ocean-blue);
             color: #ffffff;
             border: 1px solid rgba(0, 255, 188, 0.3);
             padding: 0.9rem 2.4rem;
@@ -202,7 +217,7 @@
         .shop-btn:hover {
             background: var(--sapphire-blue);
             border-color: var(--neon-jade);
-            color: var(--neon-jade); /* Accent text on hover */
+            color: var(--neon-jade);
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(0, 255, 188, 0.25);
         }
@@ -232,11 +247,17 @@
 </head>
 <body>
 
+    <!-- Standard HTML Background Image & Overlay -->
+    <div class="bg-image-wrapper">
+        <img src="mainhero.jpeg" alt="Violet Legacy Hero Background">
+    </div>
+    <div class="bg-overlay"></div>
+
     <div class="landing-container">
         <!-- Top Bar -->
         <header class="top-bar">
             <div class="logo-container">
-                <img src="mainhero.jpg" alt="Violet Legacy Logo">
+                <img src="LogoVL.png" alt="Violet Legacy Logo">
             </div>
             <div class="top-right-nav">
                 <button class="bag-btn" onclick="alert('Bag is empty')">
