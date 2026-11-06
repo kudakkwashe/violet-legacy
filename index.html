@@ -15,7 +15,7 @@
     <style>
 
         /* =========================
-           big page setting overal
+           BIG PAGE SETTING OVERALL
         ========================= */
 
         * {
@@ -37,7 +37,7 @@
         }
 
         /* =========================
-           to make it full page or less change here
+           PAGE CONTAINER
         ========================= */
 
         .page-container {
@@ -50,24 +50,23 @@
         }
 
         /* =========================
-           variable backgrounds (im gonna try to make a different one for mobile
+           DESKTOP BACKGROUND
         ========================= */
 
-       
-.hero-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
 
-    background-color: #d1d5db;
+            background-color: #d1d5db;
 
-    background-image: url("/violet-legacy/DSC007261.png");
+            background-image: url("/violet-legacy/DSC007261.png");
 
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-}
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
 
         /* =========================
            TOP NAVIGATION BAR
@@ -279,6 +278,16 @@
         ========================= */
 
         @media (max-width: 600px) {
+
+            /* MOBILE BACKGROUND IMAGE */
+
+            .hero-bg {
+                background-image: url("/violet-legacy/backgroundmobile.png");
+
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
 
             .nav-container {
                 top: 18px;
